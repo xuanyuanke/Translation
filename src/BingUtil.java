@@ -1,11 +1,9 @@
 import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
-import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
@@ -13,13 +11,6 @@ import java.net.URLDecoder;
 
 public class BingUtil {
 
-    private static final CloseableHttpClient httpclient;
-    public static final String CHARSET = "UTF-8";
-
-    static{
-        RequestConfig config = RequestConfig.custom().setConnectTimeout(5000).setSocketTimeout(3000).build();
-        httpclient = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
-    }
 
     private static String result(String selectTxt){
         ContentVo object = null;
@@ -54,7 +45,7 @@ public class BingUtil {
         HttpGet httpGet = new HttpGet(url);
         CloseableHttpResponse response = null;
         try {
-            response = httpclient.execute(httpGet);
+            response = HttpClientUtil.getHttpClient().execute(httpGet);
         } catch (IOException e1) {
             e1.printStackTrace();
             return null;
