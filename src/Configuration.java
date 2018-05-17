@@ -1,6 +1,7 @@
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
+import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
 
@@ -73,16 +74,25 @@ public class Configuration implements Configurable{
 
     public static int getC1() {
         String c = PropertiesComponent.getInstance().getValue(KEY_COLOR_KEY_1, "61");
+        if(StringUtils.isBlank(c)){
+            c="61";
+        }
         return Integer.parseInt(c);
     }
 
     public static int getC2() {
         String c = PropertiesComponent.getInstance().getValue(KEY_COLOR_KEY_2, "62");
+        if(StringUtils.isBlank(c)){
+            c="62";
+        }
         return Integer.parseInt(c);
     }
 
     public static int getC3() {
         String c = PropertiesComponent.getInstance().getValue(KEY_COLOR_KEY_3, "66");
+        if(StringUtils.isBlank(c)){
+            c="66";
+        }
         return Integer.parseInt(c);
     }
 }

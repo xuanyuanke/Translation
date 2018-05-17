@@ -11,7 +11,7 @@ public class ShowUtils {
         ApplicationManager.getApplication().invokeLater(new Runnable() {
             public void run() {
                 JBPopupFactory factory = JBPopupFactory.getInstance();
-                factory.createHtmlTextBalloonBuilder(result,null, new JBColor(new Color(Configuration.getC1(), Configuration.getC2(), Configuration.getC3()), new Color(61, 62, 66)), null)
+                factory.createHtmlTextBalloonBuilder(result,null, new JBColor(new Color(Configuration.getC1(), Configuration.getC2(), Configuration.getC3()), new Color(Configuration.getC1(), Configuration.getC2(), Configuration.getC3())), null)
                         .setTitle(title)
                         .createBalloon()
                         .show(factory.guessBestPopupLocation(editor), Balloon.Position.below);
