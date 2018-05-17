@@ -11,6 +11,8 @@ https://github.com/xuanyuanke/translation/blob/master/README.md
 
 ### 编码转换
 支持Native2Ascii正反向转换，选中文本右键选择或者ALT+4/5
+支持当前选中文本后追加抓换结果（非弹窗）
+
 
 #### JSON格式化显示
 
