@@ -7,7 +7,7 @@ public class Native2AsciiUtils {
     /** 
      * Native to ascii string. It's same as execut native2ascii.exe. 
      * @param str native string 
-     * @return ascii string 
+     * @return ascii string
      */ 
     public static String native2Ascii(String str) {  
         char[] chars = str.toCharArray();  
