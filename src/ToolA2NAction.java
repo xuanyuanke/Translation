@@ -2,9 +2,11 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.SelectionModel;
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.popup.Balloon;
 import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.intellij.openapi.util.TextRange;
@@ -13,11 +15,14 @@ import org.apache.commons.lang.StringUtils;
 
 import java.awt.*;
 
-public class TranslationAction extends AnAction {
+public class ToolA2NAction extends AnAction {
+
+
 
     @Override
     public void actionPerformed(AnActionEvent e) {
         final Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
+        final Project project = e.getRequiredData(CommonDataKeys.PROJECT);
         final Document document = editor.getDocument();
         final SelectionModel selectionModel = editor.getSelectionModel();
         final int start = selectionModel.getSelectionStart();
@@ -26,20 +31,14 @@ public class TranslationAction extends AnAction {
         TextRange range = new TextRange(start, end);
         String selectTxt = document.getText(range);
         if(StringUtils.isEmpty(selectTxt)){
-            ShowUtils.showPopupBalloon("请选择需要翻译的文本",editor,"错误");
+            ShowUtils.showPopupBalloon("请选择文本",editor,"错误");
             return;
         }
-        String str = "";
-        if(StringUtils.isEmpty(Configuration.getAppId()) || StringUtils.isEmpty(Configuration.getAppKey())){
-            str =BingUtil.getResult(selectTxt);
-        }else{
-            str = YoudaoUtil.getResult(selectTxt);
-        }
+        String str = Native2AsciiUtils.ascii2Native(selectTxt);
 
-        if(StringUtils.isEmpty(str)){
-            str ="无翻译结果";
-        }
-
-        ShowUtils.showPopupBalloon(str,editor,"翻译结果");
+        //这里可以替换当前文本
+        WriteCommandAction.runWriteCommandAction(project, () ->
+                document.replaceString(start, end, selectTxt+":" + str)
+        );
     }
 }

@@ -19,9 +19,7 @@ import java.util.*;
 
 public class YoudaoUtil {
 
-    private static String appkey="4ee8716a69175cce";
     private static String URL="http://openapi.youdao.com/api";
-    private static String auth = "wpqP8bVRo2daY1ThY5o3DhGYZC2FfZwK";
 
     public static void main(String[] args) throws Exception {
         String query = "你好";
@@ -57,14 +55,14 @@ public class YoudaoUtil {
         String salt = String.valueOf(System.currentTimeMillis());
         String from = "auto";
         String to = "auto";
-        String sign = md5(appkey + query + salt + auth);
+        String sign = md5(Configuration.getAppId() + query + salt + Configuration.getAppKey());
         Map params = new HashMap();
         params.put("q", query);
         params.put("from", from);
         params.put("to", to);
         params.put("sign", sign);
         params.put("salt", salt);
-        params.put("appKey", appkey);
+        params.put("appKey", Configuration.getAppId());
         return params;
     }
 

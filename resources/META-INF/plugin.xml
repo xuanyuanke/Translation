@@ -1,6 +1,6 @@
 <idea-plugin>
   <id>com.your.company.unique.plugin.id</id>
-  <name>Plugin display name here</name>
+  <name>Translation</name>
   <version>1.0</version>
   <vendor email="xuanyuanke_1988@163.com" url="http://www.github.com">xuanyuanke</vendor>
 
@@ -26,6 +26,7 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
+    <applicationConfigurable instance="Configuration"/>
   </extensions>
   <application-components>
 
@@ -44,9 +45,18 @@
       <add-to-group group-id="EditorPopupMenu" anchor="first"/>
       <keyboard-shortcut keymap="$default" first-keystroke="alt 3"/>
     </action>
-    <!--<action id="ToTranslationAction" class="TranslationAction" text="ToTranslationAction">-->
-      <!--<add-to-group group-id="GenerateGroup" anchor="first"/>-->
-    <!--</action>-->
+    <action id="ToolA2NAction" class="ToolA2NAction" text="Ascii2Native">
+      <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt 4"/>
+    </action>
+    <action id="ToolN2AAction" class="ToolN2AAction" text="Native2Ascii">
+      <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt 5"/>
+    </action>
+    <action id="ShowJson" class="ToolJsonFormatAction" text="JsonFormat">
+      <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt 6"/>
+    </action>
   </actions>
 
 </idea-plugin>

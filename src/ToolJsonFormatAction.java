@@ -1,20 +1,13 @@
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
-import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.SelectionModel;
-import com.intellij.openapi.ui.popup.Balloon;
-import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.intellij.openapi.util.TextRange;
-import com.intellij.ui.JBColor;
 import org.apache.commons.lang.StringUtils;
 
-import java.awt.*;
-
-public class TranslationAction extends AnAction {
-
+public class ToolJsonFormatAction extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {
         final Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
@@ -25,21 +18,14 @@ public class TranslationAction extends AnAction {
         // 当前选中的起止位置和文本
         TextRange range = new TextRange(start, end);
         String selectTxt = document.getText(range);
-        if(StringUtils.isEmpty(selectTxt)){
-            ShowUtils.showPopupBalloon("请选择需要翻译的文本",editor,"错误");
+        if (StringUtils.isEmpty(selectTxt)) {
+            ShowUtils.showPopupBalloon("请选择展示的文本", editor, "错误");
             return;
         }
-        String str = "";
-        if(StringUtils.isEmpty(Configuration.getAppId()) || StringUtils.isEmpty(Configuration.getAppKey())){
-            str =BingUtil.getResult(selectTxt);
-        }else{
-            str = YoudaoUtil.getResult(selectTxt);
-        }
-
-        if(StringUtils.isEmpty(str)){
-            str ="无翻译结果";
-        }
-
-        ShowUtils.showPopupBalloon(str,editor,"翻译结果");
+        String str = JsonShowUtil.formatJson(selectTxt);
+        String htmlstr = "<html>\n <body>\n  " + str + " </body>\n  </html>";
+        System.out.println(str);
+        ShowUtils.showPopupBalloon(htmlstr, editor, "SON 格式化");
     }
+
 }

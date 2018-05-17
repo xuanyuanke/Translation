@@ -12,7 +12,7 @@ import java.net.URLDecoder;
 public class BingUtil {
 
 
-    private static String result(String selectTxt){
+    public static String getResult(String selectTxt){
         ContentVo object = null;
         try {
             String result = getContent(selectTxt);
@@ -29,7 +29,6 @@ public class BingUtil {
         String n=" \n ";
         buffer.append(selectTxt);
         buffer.append(" \n ").append(n);// /**
-//        buffer.append(xing).append("word : "+object.getWord()).append(n);
         if(null == object || null == object.getDefs()){
             return null ;
         }
@@ -74,6 +73,6 @@ public class BingUtil {
     }
 
     public static void main(String[] args) {
-        System.out.print(result("你好"));
+        System.out.print(getResult("你好"));
     }
 }
