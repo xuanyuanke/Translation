@@ -1,16 +1,18 @@
+
 import com.intellij.ide.util.PropertiesComponent;
-import com.intellij.openapi.options.Configurable;
-import com.intellij.openapi.options.ConfigurationException;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.Configurable;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
 
+import javax.naming.ConfigurationException;
 import javax.swing.*;
 
 /**
  * Created by moxun on 2017/6/14.
  */
-public class Configuration implements Configurable{
+public class Configuration implements Configurable {
     private JTextField appId;
     private JTextField appKey;
     private JPanel root;
@@ -94,5 +96,10 @@ public class Configuration implements Configurable{
             c="66";
         }
         return Integer.parseInt(c);
+    }
+
+    @Override
+    public RequestConfig getConfig() {
+        return null;
     }
 }

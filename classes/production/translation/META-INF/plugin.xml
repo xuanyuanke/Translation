@@ -1,0 +1,62 @@
+<idea-plugin>
+  <id>com.your.company.unique.plugin.id</id>
+  <name>Translation</name>
+  <version>1.0</version>
+  <vendor email="xuanyuanke_1988@163.com" url="http://www.github.com">xuanyuanke</vendor>
+
+  <description><![CDATA[
+      Enter short description for your plugin here.<br>
+      <em>most HTML tags may be used</em>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="145.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+    <applicationConfigurable instance="Configuration"/>
+  </extensions>
+  <application-components>
+
+    <!-- Add your application components here -->
+
+    <component>
+
+      <implementation-class>Translation</implementation-class>
+
+    </component>
+
+  </application-components>
+  <actions>
+    <!-- Add your actions here -->
+    <action id="ToTranslation" class="TranslationAction" text="翻译">
+      <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt 3"/>
+    </action>
+    <action id="ToolA2NAction" class="ToolA2NAction" text="Ascii2Native">
+      <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt 4"/>
+    </action>
+    <action id="ToolN2AAction" class="ToolN2AAction" text="Native2Ascii">
+      <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt 5"/>
+    </action>
+    <action id="ShowJson" class="ToolJsonFormatAction" text="JsonFormat">
+      <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt 6"/>
+    </action>
+  </actions>
+
+</idea-plugin>

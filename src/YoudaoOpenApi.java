@@ -1,4 +1,4 @@
-import com.google.gson.Gson;
+import com.google.gson.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -9,17 +9,15 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
-public class BingUtil {
-
-
+public class YoudaoOpenApi {
     public static String getResult(String selectTxt){
-        ContentVo object = null;
+        JsonObject object = null;
         try {
             String result = getContent(selectTxt);
             if(StringUtils.isEmpty(result)){
                 return null;
             }
-            object = new Gson().fromJson(result,ContentVo.class);
+            object = new Gson().fromJson(result,JsonObject.class);
         }catch (Exception el){
             el.printStackTrace();
             return null ;
@@ -29,18 +27,21 @@ public class BingUtil {
         String n=" \n ";
         buffer.append(selectTxt);
         buffer.append(" \n ").append(n);// /**
-        if(null == object || null == object.getDefs()){
+        if(null == object || null == object.get("translateResult")){
             return null ;
         }
-        object.getDefs().forEach(defsVo->{
-            buffer.append(xing).append(" "+defsVo.getPos()).append(" ").append(defsVo.getDef()).append(n);
+        JsonArray array = new Gson().fromJson(object.get("translateResult"),JsonArray.class);
+        array.forEach(defsVo -> {
+            defsVo.getAsJsonArray().forEach(vo -> {
+                buffer.append(xing).append(" " + vo.getAsJsonObject().get("src")).append(" ").append(vo.getAsJsonObject().get("tgt")).append(n);
+            });
         });
-        buffer.append(xing+xing).append(n); // +"/"
+        buffer.append(xing+xing).append(n);
         return buffer.toString();
     }
 
     private static String getContent(String text){
-        String url = "http://xtk.azurewebsites.net/BingDictService.aspx?Word="+ URLEncoder.encode(text);
+        String url = "http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i="+ URLEncoder.encode(text);
         HttpGet httpGet = new HttpGet(url);
         CloseableHttpResponse response = null;
         try {
@@ -73,6 +74,6 @@ public class BingUtil {
     }
 
     public static void main(String[] args) {
-        System.out.print(getResult("你好"));
+        System.out.print(getResult("You are all well"));
     }
 }
