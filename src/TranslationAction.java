@@ -25,7 +25,7 @@ public class TranslationAction extends AnAction {
         }
         String str = "";
         if(StringUtils.isEmpty(Configuration.getAppId()) || StringUtils.isEmpty(Configuration.getAppKey())){
-            str =BingUtil.getResult(selectTxt);
+            str =YoudaoOpenApi.getResult(selectTxt);
         }else{
             str = YoudaoUtil.getResult(selectTxt);
         }
