@@ -30,7 +30,7 @@ File -> Settings -> Plugins -> Install plugin from disk -> 选择translation.jar
 File -> Settings -> Translation -> 设置AppId 、AppKey、Color
 #### v1.4  
 
-* 驼峰与下划线大写互转
+* 驼峰与下划线大写互转（IDEA需升级至最新版本。2017版安装插件后setting无法打开，正在排查）
 
 #### v1.3 
 * 设置弹窗颜色
