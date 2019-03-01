@@ -26,7 +26,6 @@ public class Translation implements ApplicationComponent {
 
 
 
-    @NotNull
     public String getComponentName() {
 
         return "Translation";
