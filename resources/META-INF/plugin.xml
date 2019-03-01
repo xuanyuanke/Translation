@@ -1,15 +1,12 @@
 <idea-plugin>
-  <id>com.your.company.unique.plugin.id</id>
+  <id>xuanyuanke-translation</id>
   <name>Translation</name>
   <version>1.0</version>
   <vendor email="xuanyuanke_1988@163.com" url="http://www.github.com">xuanyuanke</vendor>
 
-  <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
-    ]]></description>
+  <description>个人翻译</description>
 
-  <change-notes><![CDATA[
+  <change-notes  ><![CDATA[
       Add change notes here.<br>
       <em>most HTML tags may be used</em>
     ]]>
