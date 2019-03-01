@@ -18,12 +18,19 @@ https://github.com/xuanyuanke/translation/blob/master/README.md
 
 将JSON字符串格式化弹窗显示（ALT+6）
 
+#### 驼峰与下划线大写互转
+
+将当前选中文字替换为转换后文字（ALT+7）
+
 #### 安装
 
 File -> Settings -> Plugins -> Install plugin from disk -> 选择translation.jar安装并重启
 
 #### 设置
 File -> Settings -> Translation -> 设置AppId 、AppKey、Color
+#### v1.4  
+
+* 驼峰与下划线大写互转
 
 #### v1.3 
 * 设置弹窗颜色
