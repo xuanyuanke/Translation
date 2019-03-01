@@ -33,7 +33,7 @@ public class YoudaoOpenApi {
         JsonArray array = new Gson().fromJson(object.get("translateResult"),JsonArray.class);
         array.forEach(defsVo -> {
             defsVo.getAsJsonArray().forEach(vo -> {
-                buffer.append(xing).append(" " + vo.getAsJsonObject().get("src")).append(" ").append(vo.getAsJsonObject().get("tgt")).append(n);
+                buffer.append(xing).append(" " + vo.getAsJsonObject().get("src")).append(n).append(vo.getAsJsonObject().get("tgt")).append(n);
             });
         });
         buffer.append(xing+xing).append(n);
